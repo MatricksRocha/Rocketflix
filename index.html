@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocketflix</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favico/favicon.ico">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <img src="./assets/shuffle.svg" alt="Ícone de aleatório">
+            <h1>Não sabe o que assistir?</h1>
+        </header>
+
+        <section id="movieInfo" class="movieInfo-disabled">
+            <img id="movieImg" src="" alt="Movie Poster">
+
+            <div id="movieText">
+                <h2 id="movieTitle"></h2>
+                <h5 id="movieRelease"></h5>
+                <p id="movieDescription"></p>
+            </div>
+        </section>
+
+        <section id="findMovie">
+            <button id="findMovieBtn">
+                <img src="./assets/shuffle.svg" alt="Ícone de aleatório">
+                <span>Encontrar filme</span>
+            </button>
+
+            <p>Clique em "Encontrar filme" que traremos informações de algum filme para você assistir hoje.</p>
+        </section>
+    </div>
+</body>
+<!-- Axios and JS -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="module" src="./script.js"></script>
+</html>
