@@ -24,6 +24,7 @@ const findMovie = async () => {
     const movieTitle = document.querySelector("#movieTitle");
     const movieRelease = document.querySelector("#movieRelease");
     const movieDescription = document.querySelector("#movieDescription");
+    const loadingScreen = document.querySelector("#loadingScreen");
     const body = document.querySelector("body");
     
     let page;
@@ -35,6 +36,7 @@ const findMovie = async () => {
     // generate a number refferring to a movie page of the top rated movies on TMDB
     page = generateRandomMoviePage();
 
+    loadingScreen.style.display = "initial";
     // get top rated movies from API - URL example: https://api.themoviedb.org/3/movie/top_rated?api_key=6942b1895da6130415bdbb9197e74a58&language=pt-BR&page=1
     await axios.get(`${BASE_URL}${API_KEY}${language}${PAGE}${page}`)
     .then(response => {
@@ -64,6 +66,7 @@ const findMovie = async () => {
         movieDescription.textContent = "";
         console.error(error);
     })
+    loadingScreen.style.display = "none";
 }
 
 const findMovieBtn = document.querySelector('#findMovieBtn');
