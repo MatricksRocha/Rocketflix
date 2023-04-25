@@ -26,29 +26,24 @@ const findMovie = async () => {
     const movieDescription = document.querySelector("#movieDescription");
     const loadingScreen = document.querySelector("#loadingScreen");
     const body = document.querySelector("body");
-    
-    let page;
-    let movieSelected;
-    let releaseDate;
-    let shortMonth;
-    let data;
 
     // generate a number refferring to a movie page of the top rated movies on TMDB
-    page = generateRandomMoviePage();
+    const page = generateRandomMoviePage();
 
     loadingScreen.style.display = "initial";
-    // get top rated movies from API - URL example: https://api.themoviedb.org/3/movie/top_rated?api_key=6942b1895da6130415bdbb9197e74a58&language=pt-BR&page=1
-    await axios.get(`${BASE_URL}${API_KEY}${language}${PAGE}${page}`)
-    .then(response => {
+    try {
+        // get top rated movies from API - URL example: https://api.themoviedb.org/3/movie/top_rated?api_key=6942b1895da6130415bdbb9197e74a58&language=pt-BR&page=1
+        const response = await axios.get(`${BASE_URL}${API_KEY}${language}${PAGE}${page}`);
+
         // generates random number corresponding to a movie on the page
-        movieSelected = generateMovieOnPage(response.data.results.length);
+        const movieSelected = generateMovieOnPage(response.data.results.length);
 
         // variable data receives the movie datas
-        data = response.data.results[movieSelected];
+        const data = response.data.results[movieSelected];
 
         // get the movie release date and tranform the month to a 3 letter short month
-        releaseDate = new Date(data.release_date);
-        shortMonth = releaseDate.toLocaleString('pt-BR', { month: 'short' }).split(".")[0];
+        const releaseDate = new Date(data.release_date);
+        const shortMonth = releaseDate.toLocaleString('pt-BR', { month: 'short' }).split(".")[0];
         
         // shows the movieInfo section and shows all the info of the movie selected
         movieInfo.classList = "movieInfo-enabled";
@@ -57,15 +52,13 @@ const findMovie = async () => {
         movieRelease.textContent = `Lançado em: ${shortMonth}/${releaseDate.getFullYear()}`;
         movieDescription.textContent = data.overview;
         body.classList = "mobileBodyHeight";
-    })
-    .catch(error => {
-        // if there is an error on API get, shows a message to the user and also shows an error on the console
+    } catch (error) {
         movieImg.src = "./assets/dev.jpg";
         movieTitle.textContent = "Ops, filme não encontrado :( Tente novamente!";
         movieRelease.textContent = "";
         movieDescription.textContent = "";
         console.error(error);
-    })
+    }
     loadingScreen.style.display = "none";
 }
 
