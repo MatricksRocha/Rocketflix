@@ -24,6 +24,7 @@ const findMovie = async () => {
     const movieTitle = document.querySelector("#movieTitle");
     const movieRelease = document.querySelector("#movieRelease");
     const movieDescription = document.querySelector("#movieDescription");
+    const body = document.querySelector("body");
     
     let page;
     let movieSelected;
@@ -53,6 +54,7 @@ const findMovie = async () => {
         movieTitle.textContent = data.title;
         movieRelease.textContent = `Lançado em: ${shortMonth}/${releaseDate.getFullYear()}`;
         movieDescription.textContent = data.overview;
+        body.classList = "mobileBodyHeight";
     })
     .catch(error => {
         // if there is an error on API get, shows a message to the user and also shows an error on the console
