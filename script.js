@@ -68,4 +68,7 @@ const findMovie = async () => {
 
 const findMovieBtn = document.querySelector('#findMovieBtn');
 
-findMovieBtn.addEventListener('click', () => {findMovie()});
+findMovieBtn.addEventListener('click', () => {
+    findMovie();
+    window.scrollTo(0, 0);
+});
